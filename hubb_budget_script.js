@@ -66,22 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderCharts();
 
-    // Toggle functionality with smooth animations
+    // Toggle functionality for opening and closing individual sections
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                content.style.padding = "0";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.padding = "1rem";
-            }
-        });
-    });
-
-    document.querySelectorAll(".sub-toggle-box").forEach(button => {
-        button.addEventListener("click", function () {
+            document.querySelectorAll(".toggle-content").forEach(content => {
+                if (content !== this.nextElementSibling) {
+                    content.style.maxHeight = null;
+                    content.style.padding = "0";
+                }
+            });
+            
             const content = this.nextElementSibling;
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
