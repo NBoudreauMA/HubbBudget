@@ -1,11 +1,11 @@
 :root {
-    --primary-color: #1E88E5;
-    --secondary-color: #FFC107;
-    --accent-color: #D32F2F;
-    --text-color: #fff;
-    --background-color: #212121;
-    --card-background: #424242;
-    --highlight-color: #43A047;
+    --primary-color: #2E7D32;
+    --secondary-color: #A5D6A7;
+    --accent-color: #1B5E20;
+    --text-color: #ffffff;
+    --background-color: #F1F8E9;
+    --card-background: #C8E6C9;
+    --highlight-color: #66BB6A;
 }
 
 body {
