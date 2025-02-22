@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HubbBudget - Town of Hubbardston</title>
-    <link rel="stylesheet" href="hubb_budget_styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="hubb_budget_script.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header class="hero">
         <div class="hero-content">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="town-seal">
+            <img src="town_logo.png" alt="Hubbardston Seal" class="town-seal">
             <h1>HubbBudget - Fiscal Year 2026</h1>
             <p>📊 A modern, interactive, and transparent digital budget for Hubbardston 📊</p>
         </div>
@@ -19,75 +19,63 @@
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#message">🏛 TA Message</a></li>
-            <li><a href="#executive-summary">📑 Executive Summary</a></li>
-            <li><a href="#revenue">💰 Revenue</a></li>
-            <li><a href="#expenditures">📉 Expenditures</a></li>
-            <li><a href="#capital">🏗 Capital Plan</a></li>
-            <li><a href="#long-term">📈 Long-Term Outlook</a></li>
-            <li><a href="#info">ℹ️ More Info</a></li>
+            <li><button class="toggle-box">🏛 TA Message</button></li>
+            <li><button class="toggle-box">📑 Executive Summary</button></li>
+            <li><button class="toggle-box">💰 Revenue</button></li>
+            <li><button class="toggle-box">📉 Expenditures</button></li>
+            <li><button class="toggle-box">🏗 Capital Plan</button></li>
+            <li><button class="toggle-box">📈 Long-Term Outlook</button></li>
+            <li><button class="toggle-box">ℹ️ More Info</button></li>
         </ul>
     </nav>
 
-    <section class="dashboard-section" id="message">
-        <h2>👋 Town Administrator’s Message</h2>
-        <p>Welcome to the **next-generation budget experience** for Hubbardston! Our goal is to make **finance approachable, data-driven, and engaging**. This interactive budget book puts **real-time data, strategic investments, and financial transparency** right at your fingertips.</p>
-    </section>
-
-    <section class="dashboard-section" id="executive-summary">
-        <h2>📑 Executive Summary</h2>
-        <p>Quick glance at **Hubbardston's financial health** and **major priorities**:</p>
+    <section class="toggle-content">
+        <h2>🏛 Town Administrator’s Message</h2>
+        <h3>Town of Hubbardston Fiscal Year 2026 Budget Executive Summary</h3>
+        <p><strong>Introduction:</strong> The Fiscal Year 2026 (FY26) budget for the Town of Hubbardston reflects our continued commitment to responsible financial stewardship while investing in essential services that support our residents. This budget balances fiscal responsibility with the need to maintain and enhance core services, improve municipal operations, and ensure the town’s long-term sustainability. With rising costs and evolving community needs, this year’s budget is designed to align with strategic goals, emphasizing efficiency, transparency, and prudent planning.</p>
+        
+        <h3>Revenue Overview</h3>
+        <p>The FY26 budget projects total revenue of $11,699,616, representing a 5.71% increase from FY25. The revenue sources include:</p>
         <ul>
-            <li><strong>Total Budget:</strong> 💵 $XX,XXX,XXX</li>
-            <li><strong>Revenue Growth:</strong> 📈 X%</li>
-            <li><strong>Key Investments:</strong> 🚔 Public Safety, 🏫 Education, 🏗 Infrastructure</li>
+            <li><strong>Tax Levy:</strong> $9,276,260, accounting for the largest share of revenue, inclusive of Proposition 2.5 adjustments and new growth.</li>
+            <li><strong>State Aid:</strong> $730,906, reflecting modest increases in unrestricted government aid and local reimbursement programs.</li>
+            <li><strong>Local Receipts:</strong> $1,619,685, generated through excise taxes, permit fees, and other municipal revenues.</li>
+            <li><strong>Other Sources:</strong> Free Cash allocations and stabilization transfers strategically used to support capital needs and operational costs.</li>
         </ul>
-    </section>
-
-    <section class="dashboard-section" id="revenue">
-        <h2>💰 Revenue Overview</h2>
-        <p>Where does **our money come from**? Property taxes, state aid, and local receipts fuel our community.</p>
-        <div class="chart-grid">
-            <div class="chart-box"><canvas id="revenueBarChart"></canvas></div>
-            <div class="chart-box"><canvas id="revenuePieChart"></canvas></div>
-        </div>
-    </section>
-
-    <section class="dashboard-section" id="expenditures">
-        <h2>📉 Expenditure Overview</h2>
-        <p>Where does **our money go**? Hubbardston prioritizes education, public safety, and municipal services.</p>
-        <div class="chart-box"><canvas id="expenditureChart"></canvas></div>
-    </section>
-
-    <section class="dashboard-section" id="capital">
-        <h2>🏗 Capital Improvement Plan</h2>
-        <p>🌟 Smart investments in **public safety, roads, and technology** to keep Hubbardston growing.</p>
+        
+        <h3>Expenditure Summary</h3>
+        <p>The proposed FY26 budget totals $11,848,376, a 6.29% increase from FY25. Key allocations include:</p>
         <ul>
-            <li>🚒 **Public Safety HQ:** $X.XM</li>
-            <li>🛣 **Road Upgrades:** $X.XM</li>
-            <li>💻 **Digital Transformation:** $X.XM</li>
+            <li><strong>General Government:</strong> $728,886 - Investments in IT modernization, administrative support, and digital engagement.</li>
+            <li><strong>Public Safety:</strong> $1,581,842 - Fire and Police investments, body cameras, and regional partnerships.</li>
+            <li><strong>Public Works:</strong> $920,184 - Infrastructure repairs, road maintenance, and DPW investments.</li>
+            <li><strong>Education:</strong> $7,334,563 - School assessments, funding advocacy, and stability planning.</li>
+            <li><strong>Human Services & Culture:</strong> $121,239 - Senior services, library programs, and recreation funding.</li>
+            <li><strong>Debt Service & Liabilities:</strong> $1,151,810 - Managing existing debt and planning for future liabilities.</li>
         </ul>
-    </section>
-
-    <section class="dashboard-section" id="long-term">
-        <h2>📈 Long-Term Financial Outlook</h2>
-        <p>🔮 **Strategic forecasting** for future stability, focusing on **sustainable revenue sources** and **controlled spending.**</p>
-    </section>
-
-    <section class="dashboard-section" id="info">
-        <h2>ℹ️ More Information</h2>
-        <div class="info-subsection">
-            <h3>💵 Where Your Tax Dollars Go</h3>
-            <p>💡 A **detailed breakdown** of how public funds are allocated.</p>
-        </div>
-        <div class="info-subsection">
-            <h3>📊 Year-Over-Year Changes</h3>
-            <p>📆 A quick look at **what’s different** from last fiscal year.</p>
-        </div>
-        <div class="info-subsection">
-            <h3>🗓 Budget Timeline</h3>
-            <p>📅 Key **milestones and deadlines** in the budget approval process.</p>
-        </div>
+        
+        <h3>Capital Investments & Free Cash Utilization</h3>
+        <p>A total of $525,000 in Free Cash allocations is proposed to support:</p>
+        <ul>
+            <li>🚧 <strong>Capital Improvement Projects:</strong> $275,000 - Focused on facility repairs and infrastructure.</li>
+            <li>💰 <strong>General Stabilization Fund:</strong> $10,000 - Enhancing financial reserves.</li>
+            <li>🔧 <strong>Operating Budget Support:</strong> $130,000 - Addressing rising fixed costs.</li>
+            <li>💻 <strong>Technology Enhancements:</strong> Investments in automation and Microsoft 365 integration.</li>
+        </ul>
+        
+        <h3>Key Challenges & Considerations</h3>
+        <ul>
+            <li><strong>Rising Costs:</strong> Inflation and contractual wage adjustments.</li>
+            <li><strong>Financial Sustainability:</strong> Strategic revenue growth and grant opportunities.</li>
+            <li><strong>Education Funding:</strong> Continued advocacy for fair and sustainable school funding.</li>
+            <li><strong>Transition to 48 Gardner Road:</strong> Optimizing the new Town Hall space.</li>
+        </ul>
+        
+        <h3>Conclusion</h3>
+        <p>The FY26 budget is a forward-thinking plan that ensures Hubbardston remains financially stable while addressing key operational needs. Despite fiscal challenges, the town's **proactive planning, strategic investments, and commitment to transparency** will continue to provide high-quality services to residents.</p>
+        
+        <p><strong>For additional details or inquiries, contact:</strong></p>
+        <p>📞 (978) 928-1400 x200 | 📧 admin@hubbardstonma.gov</p>
     </section>
 
     <footer>
