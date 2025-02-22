@@ -17,8 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 1500,
+                    easing: "easeOutBounce"
+                },
                 plugins: {
-                    title: { display: true, text: title, font: { size: 16 } },
+                    title: { display: true, text: title, font: { size: 18, weight: "bold" } },
                     legend: { position: 'bottom' },
                     tooltip: {
                         callbacks: {
@@ -44,29 +48,30 @@ document.addEventListener("DOMContentLoaded", () => {
         createChart(
             document.getElementById("revenueBarChart"), "bar",
             revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Overview", "#34d399"
+            "Revenue Overview", ["#1E88E5", "#FFC107", "#43A047"]
         );
 
         createChart(
             document.getElementById("revenuePieChart"), "pie",
             revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Distribution", ["#2a7d2e", "#1e5b24", "#ffd700"]
+            "Revenue Distribution", ["#673AB7", "#FF5722", "#009688"]
         );
 
         createChart(
             document.getElementById("expenditureChart"), "bar",
             expenditureData.map(row => row[0]), expenditureData.map(row => parseFloat(row[1])),
-            "Expenditure Overview", "#ef4444"
+            "Expenditure Overview", ["#D32F2F", "#1976D2", "#388E3C"]
         );
     };
 
     renderCharts();
 
-    // Toggle functionality
+    // Toggle functionality with smooth animation
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
             const content = this.nextElementSibling;
             content.style.display = content.style.display === "block" ? "none" : "block";
+            content.style.transition = "all 0.5s ease-in-out";
         });
     });
 
@@ -74,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", function () {
             const content = this.nextElementSibling;
             content.style.display = content.style.display === "block" ? "none" : "block";
+            content.style.transition = "all 0.5s ease-in-out";
         });
     });
 });
-
