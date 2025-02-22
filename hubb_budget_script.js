@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const renderCharts = async () => {
-        const revenueData = await loadCSV("https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/revenue_data.csv");
-        const expenditureData = await loadCSV("https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/expenditures_cleaned.csv");
+        const revenueData = await loadCSV("revenue_data.csv");
+        const expenditureData = await loadCSV("expenditures_cleaned.csv");
 
         const revenueLabels = revenueData.map(row => row[0]);
         const revenueValues = revenueData.map(row => parseFloat(row[1]));
