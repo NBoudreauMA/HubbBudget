@@ -66,23 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderCharts();
 
-    // Toggle functionality for opening and closing individual sections
+    // Improved Toggle functionality for opening and closing individual sections
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
-            document.querySelectorAll(".toggle-content").forEach(content => {
-                if (content !== this.nextElementSibling) {
-                    content.style.maxHeight = null;
-                    content.style.padding = "0";
-                }
-            });
-            
             const content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                content.style.padding = "0";
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                this.classList.remove("active");
             } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.padding = "1rem";
+                document.querySelectorAll(".toggle-content").forEach(section => {
+                    section.style.display = "none";
+                });
+                document.querySelectorAll(".toggle-box").forEach(btn => {
+                    btn.classList.remove("active");
+                });
+                content.style.display = "block";
+                this.classList.add("active");
             }
         });
     });
