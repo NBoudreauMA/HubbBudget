@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 1500,
-                    easing: "easeOutBounce"
+                    duration: 1200,
+                    easing: "easeOutQuart"
                 },
                 plugins: {
                     title: { display: true, text: title, font: { size: 18, weight: "bold" } },
@@ -48,38 +48,48 @@ document.addEventListener("DOMContentLoaded", () => {
         createChart(
             document.getElementById("revenueBarChart"), "bar",
             revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Overview", ["#1E88E5", "#FFC107", "#43A047"]
+            "Revenue Overview", ["#2E7D32", "#A5D6A7", "#66BB6A"]
         );
 
         createChart(
             document.getElementById("revenuePieChart"), "pie",
             revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Distribution", ["#673AB7", "#FF5722", "#009688"]
+            "Revenue Distribution", ["#1B5E20", "#4CAF50", "#C8E6C9"]
         );
 
         createChart(
             document.getElementById("expenditureChart"), "bar",
             expenditureData.map(row => row[0]), expenditureData.map(row => parseFloat(row[1])),
-            "Expenditure Overview", ["#D32F2F", "#1976D2", "#388E3C"]
+            "Expenditure Overview", ["#8E24AA", "#CE93D8", "#7B1FA2"]
         );
     };
 
     renderCharts();
 
-    // Toggle functionality with smooth animation
+    // Toggle functionality with smooth animation and proper open/close states
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
             const content = this.nextElementSibling;
-            content.style.display = content.style.display === "block" ? "none" : "block";
-            content.style.transition = "all 0.5s ease-in-out";
+            if (content.style.display === "block") {
+                content.style.opacity = "0";
+                setTimeout(() => { content.style.display = "none"; }, 300);
+            } else {
+                content.style.display = "block";
+                setTimeout(() => { content.style.opacity = "1"; }, 10);
+            }
         });
     });
 
     document.querySelectorAll(".sub-toggle-box").forEach(button => {
         button.addEventListener("click", function () {
             const content = this.nextElementSibling;
-            content.style.display = content.style.display === "block" ? "none" : "block";
-            content.style.transition = "all 0.5s ease-in-out";
+            if (content.style.display === "block") {
+                content.style.opacity = "0";
+                setTimeout(() => { content.style.display = "none"; }, 300);
+            } else {
+                content.style.display = "block";
+                setTimeout(() => { content.style.opacity = "1"; }, 10);
+            }
         });
     });
 });
