@@ -1,61 +1,79 @@
-:root {
-    --primary-color: #2a7d2e;
-    --secondary-color: #1e5b24;
-    --accent-color: #ffd700;
-    --text-color: #333;
-    --background-color: #f5f5f5;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const loadCSV = async (filePath) => {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error(`Failed to load ${filePath}`);
+            return (await response.text()).split("\n").slice(1).map(row => row.split(","));
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    };
 
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
+    const createChart = (ctx, type, labels, data, title, colors) => {
+        return new Chart(ctx, {
+            type,
+            data: { labels, datasets: [{ label: title, data, backgroundColor: colors }] },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: title, font: { size: 16 } },
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: context => `$${context.raw.toLocaleString()}`
+                        }
+                    }
+                },
+                scales: type === 'bar' ? {
+                    y: { beginAtZero: true, ticks: { callback: value => `$${value.toLocaleString()}` } }
+                } : {}
+            }
+        });
+    };
 
-.navbar {
-    background-color: var(--primary-color);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+    const renderCharts = async () => {
+        const [revenueData, expenditureData] = await Promise.all([
+            loadCSV("revenue_data.csv"),
+            loadCSV("expenditures_cleaned.csv")
+        ]);
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-}
+        if (!revenueData.length || !expenditureData.length) return;
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
+        createChart(
+            document.getElementById("revenueBarChart"), "bar",
+            revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
+            "Revenue Overview", "#34d399"
+        );
 
-.nav-links a:hover {
-    color: var(--accent-color);
-}
+        createChart(
+            document.getElementById("revenuePieChart"), "pie",
+            revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
+            "Revenue Distribution", ["#2a7d2e", "#1e5b24", "#ffd700"]
+        );
 
-.chart-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 20px 0;
-}
+        createChart(
+            document.getElementById("expenditureChart"), "bar",
+            expenditureData.map(row => row[0]), expenditureData.map(row => parseFloat(row[1])),
+            "Expenditure Overview", "#ef4444"
+        );
+    };
 
-.chart-box {
-    position: relative;
-    height: 300px;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    renderCharts();
+
+    // Toggle functionality
+    document.querySelectorAll(".toggle-box").forEach(button => {
+        button.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+
+    document.querySelectorAll(".sub-toggle-box").forEach(button => {
+        button.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+});
