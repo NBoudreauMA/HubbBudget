@@ -69,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
             const content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
+            if (content.classList.contains("active")) {
+                content.classList.remove("active");
             } else {
-                document.querySelectorAll(".toggle-content").forEach(section => section.style.display = "none");
-                content.style.display = "block";
+                document.querySelectorAll(".toggle-content").forEach(section => section.classList.remove("active"));
+                content.classList.add("active");
             }
         });
     });
