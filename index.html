@@ -9,45 +9,89 @@
     <script defer src="hubb_budget_script.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal">
+    <header class="hero">
+        <div class="hero-content">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="town-seal">
+            <h1>HubbBudget - Fiscal Year 2026</h1>
+            <p>A dynamic, transparent, and engaging digital budget book for the Town of Hubbardston.</p>
         </div>
-        <button class="menu-toggle">☰</button>
+    </header>
+
+    <nav class="navbar">
         <ul class="nav-links">
+            <li><a href="#message">TA Message</a></li>
+            <li><a href="#executive-summary">Executive Summary</a></li>
             <li><a href="#revenue">Revenue</a></li>
             <li><a href="#expenditures">Expenditures</a></li>
             <li><a href="#capital">Capital Plan</a></li>
+            <li><a href="#long-term">Long-Term Outlook</a></li>
             <li><a href="#info">More Info</a></li>
         </ul>
     </nav>
 
-    <header class="hero">
-        <h1>HubbBudget - FY26</h1>
-        <p>A modernized and interactive budget dashboard for Hubbardston.</p>
-    </header>
+    <section class="dashboard-section" id="message">
+        <h2>Town Administrator’s Message</h2>
+        <p>Welcome to the Town of Hubbardston’s digital budget book for FY26. Our commitment to fiscal responsibility, strategic investments, and transparency ensures that we continue delivering high-quality services while maintaining long-term sustainability.</p>
+    </section>
 
-    <div class="dashboard-section" id="revenue">
-        <button class="toggle-box">Revenue Overview</button>
-        <div class="toggle-content">
-            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-            <div class="chart-grid">
-                <div class="chart-box"><canvas id="revenueBarChart"></canvas></div>
-                <div class="chart-box"><canvas id="revenuePieChart"></canvas></div>
-            </div>
-        </div>
-    </div>
+    <section class="dashboard-section" id="executive-summary">
+        <h2>Executive Summary</h2>
+        <p>A high-level overview of the town's financial health, priorities, and key budget highlights.</p>
+        <ul>
+            <li><strong>Total Budget:</strong> $XX,XXX,XXX</li>
+            <li><strong>Projected Revenue Growth:</strong> X%</li>
+            <li><strong>Major Initiatives:</strong> Infrastructure, Public Safety, Education</li>
+        </ul>
+    </section>
 
-    <div class="dashboard-section" id="expenditures">
-        <button class="toggle-box">Expenditure Overview</button>
-        <div class="toggle-content">
-            <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
-            <div class="chart-box"><canvas id="expenditureChart"></canvas></div>
+    <section class="dashboard-section" id="revenue">
+        <h2>Revenue Overview</h2>
+        <p>Hubbardston’s revenue sources include property taxes, state aid, and local receipts.</p>
+        <div class="chart-grid">
+            <div class="chart-box"><canvas id="revenueBarChart"></canvas></div>
+            <div class="chart-box"><canvas id="revenuePieChart"></canvas></div>
         </div>
-    </div>
+    </section>
+
+    <section class="dashboard-section" id="expenditures">
+        <h2>Expenditure Overview</h2>
+        <p>Key spending categories include education, public safety, infrastructure, and municipal services.</p>
+        <div class="chart-box"><canvas id="expenditureChart"></canvas></div>
+    </section>
+
+    <section class="dashboard-section" id="capital">
+        <h2>Capital Improvement Plan</h2>
+        <p>Strategic investments in public safety, roads, and municipal buildings.</p>
+        <ul>
+            <li>Public Safety Building ($X.XM)</li>
+            <li>Road Infrastructure Upgrades ($X.XM)</li>
+            <li>Technology Enhancements ($X.XM)</li>
+        </ul>
+    </section>
+
+    <section class="dashboard-section" id="long-term">
+        <h2>Long-Term Financial Outlook</h2>
+        <p>A projection of the town’s financial sustainability, focusing on revenue trends, expenditure controls, and future investments.</p>
+    </section>
+
+    <section class="dashboard-section" id="info">
+        <h2>More Information</h2>
+        <div class="info-subsection">
+            <h3>Where Your Tax Dollars Go</h3>
+            <p>Breakdown of how funds are allocated to town services.</p>
+        </div>
+        <div class="info-subsection">
+            <h3>Year-Over-Year Changes</h3>
+            <p>Key budgetary shifts and their impact.</p>
+        </div>
+        <div class="info-subsection">
+            <h3>Budget Timeline</h3>
+            <p>Important milestones in the budget approval process.</p>
+        </div>
+    </section>
 
     <footer>
-        <p>© 2025 Town of Hubbardston - HubbBudget</p>
+        <p>© 2025 Town of Hubbardston - HubbBudget | Built for Transparency & Engagement</p>
     </footer>
 </body>
 </html>
