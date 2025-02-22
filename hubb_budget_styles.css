@@ -1,80 +1,125 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const loadCSV = async (filePath) => {
-        try {
-            const response = await fetch(filePath);
-            if (!response.ok) throw new Error(`Failed to load ${filePath}`);
-            return (await response.text()).split("\n").slice(1).map(row => row.split(","));
-        } catch (error) {
-            console.error(error);
-            return [];
-        }
-    };
+/* HubbBudget - Modern, Professional Budget Book Styles */
 
-    const createChart = (ctx, type, labels, data, title, colors) => {
-        return new Chart(ctx, {
-            type,
-            data: { labels, datasets: [{ label: title, data, backgroundColor: colors }] },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 1000,
-                    easing: "easeOutCubic"
-                },
-                plugins: {
-                    title: { display: true, text: title, font: { size: 18, weight: "bold" } },
-                    legend: { position: 'bottom' },
-                    tooltip: {
-                        callbacks: {
-                            label: context => `$${context.raw.toLocaleString()}`
-                        }
-                    }
-                },
-                scales: type === 'bar' ? {
-                    y: { beginAtZero: true, ticks: { callback: value => `$${value.toLocaleString()}` } }
-                } : {}
-            }
-        });
-    };
+:root {
+    --primary-color: #2E7D32;
+    --secondary-color: #A5D6A7;
+    --accent-color: #1B5E20;
+    --text-color: #333;
+    --background-color: #F1F8E9;
+    --card-background: #FFFFFF;
+    --highlight-color: #66BB6A;
+    --button-hover: #388E3C;
+    --header-text: #FFFFFF;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
 
-    const renderCharts = async () => {
-        const [revenueData, expenditureData] = await Promise.all([
-            loadCSV("revenue_data.csv"),
-            loadCSV("expenditures_cleaned.csv")
-        ]);
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
 
-        if (!revenueData.length || !expenditureData.length) return;
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+    text-align: center;
+    padding: 3rem;
+    color: var(--header-text);
+}
 
-        createChart(
-            document.getElementById("revenueBarChart"), "bar",
-            revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Overview", ["#4CAF50", "#81C784", "#388E3C"]
-        );
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
 
-        createChart(
-            document.getElementById("revenuePieChart"), "pie",
-            revenueData.map(row => row[0]), revenueData.map(row => parseFloat(row[1])),
-            "Revenue Distribution", ["#2E7D32", "#66BB6A", "#A5D6A7"]
-        );
+.navbar {
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 2px 10px var(--shadow);
+}
 
-        createChart(
-            document.getElementById("expenditureChart"), "bar",
-            expenditureData.map(row => row[0]), expenditureData.map(row => parseFloat(row[1])),
-            "Expenditure Overview", ["#D32F2F", "#E57373", "#B71C1C"]
-        );
-    };
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    renderCharts();
+.nav-links button {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.75rem 1.25rem;
+    transition: background 0.3s;
+}
 
-    document.querySelectorAll(".toggle-box").forEach(button => {
-        button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            if (content.classList.contains("active")) {
-                content.classList.remove("active");
-            } else {
-                document.querySelectorAll(".toggle-content").forEach(section => section.classList.remove("active"));
-                content.classList.add("active");
-            }
-        });
-    });
-});
+.nav-links button:hover {
+    background: var(--button-hover);
+    border-radius: 5px;
+}
+
+.dashboard-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-section:hover {
+    transform: scale(1.02);
+}
+
+.toggle-box {
+    background: var(--highlight-color);
+    color: var(--text-color);
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+.toggle-box:hover {
+    background: var(--button-hover);
+}
+
+.toggle-content {
+    display: none;
+    padding: 1rem;
+    background: var(--card-background);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: all 0.5s ease-in-out;
+}
+
+.toggle-content.active {
+    display: block;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: var(--header-text);
+}
